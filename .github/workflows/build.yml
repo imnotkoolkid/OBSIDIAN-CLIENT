@@ -1,20 +1,14 @@
-name: Build Obsidian Client
+name: Build
 
 on:
-  workflow_dispatch: 
-  push:
-    branches:
-      - main 
-  pull_request:
-    branches:
-      - main 
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ${{ matrix.os }}
 
     permissions:
-      contents: write 
+      contents: write
 
     strategy:
       matrix:
@@ -37,8 +31,8 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Get version and name from package.json
-        id: get_version_name
+      - name: Get version from package.json
+        id: get_version
         run: |
           $version = node -p "require('./package.json').version"
           echo "version=$version" >> $env:GITHUB_OUTPUT
@@ -50,10 +44,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v${{ steps.get_version_name.outputs.version }}
-          name: Release ${{ steps.get_version_name.outputs.version }}
+          tag_name: v${{ steps.get_version.outputs.version }}
+          name: Release ${{ steps.get_version.outputs.version }}
           draft: true
-          prerelease: true
+          prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Electron App
@@ -61,25 +55,35 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: List build directory
-        run: ls -l dist
+      - name: List dist directory
+        run: dir dist
+        shell: cmd
+        if: matrix.os == 'windows-latest'
 
+      - name: List dist directory
+        run: ls -l dist
+        if: matrix.os == 'macos-13'
+
+      # Windows build
       - name: Upload Windows build
         if: matrix.os == 'windows-latest'
         uses: actions/upload-artifact@v4.6.2
         with:
-          name: obsidian-client-setup-win-x64.exe
-          path: dist/Obsidian Client-setup-win-x64-*.exe
+          name: Obsidian-Client-setup-win
+          path: |
+            dist/Obsidian Client-setup-win-x64-*.exe
+            dist/Obsidian Client-setup-win-ia32-*.exe
           if-no-files-found: warn
           compression-level: 6
           overwrite: false
           include-hidden-files: false
 
+      # macOS build
       - name: Upload macOS build
         if: matrix.os == 'macos-13'
         uses: actions/upload-artifact@v4.6.2
         with:
-          name: obsidian-client-setup-mac.dmg
+          name: Obsidian-Client-setup-mac
           path: |
             dist/Obsidian Client-setup-mac-*.dmg
             dist/Obsidian Client-setup-mac-*.dmg.blockmap
