@@ -9,7 +9,9 @@
   },
   "author": "imnotkoolkid",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "discord-rpc": "^4.0.1"
+  },
   "devDependencies": {
     "electron": "^10.4.7",
     "electron-builder": "^24.13.3"
@@ -17,23 +19,12 @@
   "build": {
     "appId": "com.imnotkoolkid.obsidianclient",
     "productName": "Obsidian Client",
+    "win": {
+      "target": "nsis",
+      "icon": "assets/Obsidian Client.ico"
+    },
     "directories": {
       "output": "dist"
-    },
-    "win": {
-      "target": [
-        {
-          "target": "nsis",
-          "arch": ["x64", "ia32"]
-        }
-      ],
-      "icon": "assets/Obsidian Client.ico",
-      "artifactName": "${productName}-setup-win-${arch}-${version}.${ext}"
-    },
-    "mac": {
-      "target": "dmg",
-      "icon": "assets/Obsidian Client.icns",
-      "artifactName": "${productName}-setup-mac-${version}.${ext}"
     }
   }
 }
