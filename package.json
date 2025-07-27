@@ -21,22 +21,10 @@
     "productName": "Obsidian Client",
     "win": {
       "target": "nsis",
-      "icon": "assets/Obsidian Client.ico",
-      "artifactName": "${productName}-setup-win-${arch}-${version}.${ext}"
-    },
-    "mac": {
-      "target": "dmg",
-      "icon": "assets/Obsidian Client.icns",
-      "artifactName": "${productName}-setup-mac-${version}.${ext}"
+      "icon": "assets/Obsidian Client.ico"
     },
     "directories": {
       "output": "dist"
-    },
-    "publish": {
-      "provider": "github",
-      "owner": "imnotkoolkid",
-      "repo": "obsidian-client",
-      "releaseType": "draft"
     }
   }
 }
