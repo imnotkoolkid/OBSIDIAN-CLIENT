@@ -16,27 +16,15 @@
     "electron": "^10.4.7",
     "electron-builder": "^24.13.3"
   },
-"build": {
-  "appId": "com.imnotkoolkid.obsidianclient",
-  "productName": "Obsidian Client",
-  "win": {
-    "target": "nsis",
-    "icon": "assets/Obsidian Client.ico"
-  },
-  "mac": {
-    "target": "dmg",
-    "icon": "assets/Obsidian Client.icns"
-  },
-  "directories": {
-    "output": "dist"
-  },
-  "publish": [
-    {
-      "provider": "github",
-      "owner": "imnotkoolkid",
-      "repo": "OBSIDIAN-CLIENT",
-      "releaseType": "draft"
+  "build": {
+    "appId": "com.imnotkoolkid.obsidianclient",
+    "productName": "Obsidian Client",
+    "win": {
+      "target": "nsis",
+      "icon": "assets/Obsidian Client.ico"
+    },
+    "directories": {
+      "output": "dist"
     }
-  ]
-}
+  }
 }
