@@ -8,13 +8,10 @@ win:
     - target: nsis
       arch:
         - x64
+        - ia32
   icon: assets/Obsidian Client.ico
-  artifactName: "${name}-setup-win-${arch}-${version}.${ext}"
+  artifactName: "${productName}-setup-win-${arch}-${version}.${ext}"
 mac:
   target: dmg
   icon: assets/Obsidian Client.icns
-  artifactName: "${name}-setup-mac-${version}.${ext}"
-publish:
-  provider: github
-  owner: imnotkoolkid
-  repo: OBSIDIAN-CLIENT
+  artifactName: "${productName}-setup-mac-${version}.${ext}"
