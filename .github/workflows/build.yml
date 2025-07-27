@@ -1,0 +1,89 @@
+name: Build Obsidian Client
+
+on:
+  workflow_dispatch: 
+  push:
+    branches:
+      - main 
+  pull_request:
+    branches:
+      - main 
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    permissions:
+      contents: write 
+
+    strategy:
+      matrix:
+        os: [macos-13, windows-latest]
+        include:
+          - os: windows-latest
+            arch: x64
+          - os: macos-13
+            arch: x64
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Get version and name from package.json
+        id: get_version_name
+        run: |
+          $version = node -p "require('./package.json').version"
+          echo "version=$version" >> $env:GITHUB_OUTPUT
+        shell: pwsh
+
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v2.0.6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.get_version_name.outputs.version }}
+          name: Release ${{ steps.get_version_name.outputs.version }}
+          draft: true
+          prerelease: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Electron App
+        run: npm run build
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: List build directory
+        run: ls -l dist
+
+      - name: Upload Windows build
+        if: matrix.os == 'windows-latest'
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: obsidian-client-setup-win-x64.exe
+          path: dist/Obsidian Client-setup-win-x64-*.exe
+          if-no-files-found: warn
+          compression-level: 6
+          overwrite: false
+          include-hidden-files: false
+
+      - name: Upload macOS build
+        if: matrix.os == 'macos-13'
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: obsidian-client-setup-mac.dmg
+          path: |
+            dist/Obsidian Client-setup-mac-*.dmg
+            dist/Obsidian Client-setup-mac-*.dmg.blockmap
+          if-no-files-found: warn
+          compression-level: 6
+          overwrite: false
+          include-hidden-files: false
