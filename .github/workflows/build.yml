@@ -1,7 +1,7 @@
-name: Build
+name: Build Obsidian Client
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: # Allows manual triggering of the workflow
 
 jobs:
   build:
@@ -31,12 +31,16 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Get version from package.json
-        id: get_version
+      - name: Get version and name from package.json
+        id: get_version_name
         run: |
-          $version = node -p "require('./package.json').version"
-          echo "version=$version" >> $env:GITHUB_OUTPUT
-        shell: pwsh
+          echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+          echo "name=$(node -p "require('./package.json').name")" >> $GITHUB_OUTPUT
+
+      - name: Build Electron App
+        run: npm run build
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create Release
         id: create_release
@@ -44,50 +48,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v${{ steps.get_version.outputs.version }}
-          name: Release ${{ steps.get_version.outputs.version }}
+          tag_name: v${{ steps.get_version_name.outputs.version }}
+          name: Release ${{ steps.get_version_name.outputs.version }}
           draft: true
-          prerelease: false
+          prerelease: true
+          files: |
+            dist/*.exe
+            dist/*.dmg
           token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build Electron App
-        run: npm run build
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: List dist directory
-        run: dir dist
-        shell: cmd
-        if: matrix.os == 'windows-latest'
-
-      - name: List dist directory
-        run: ls -l dist
-        if: matrix.os == 'macos-13'
-
-      # Windows build
-      - name: Upload Windows build
-        if: matrix.os == 'windows-latest'
-        uses: actions/upload-artifact@v4.6.2
-        with:
-          name: Obsidian-Client-setup-win
-          path: |
-            dist/Obsidian Client-setup-win-x64-*.exe
-            dist/Obsidian Client-setup-win-ia32-*.exe
-          if-no-files-found: warn
-          compression-level: 6
-          overwrite: false
-          include-hidden-files: false
-
-      # macOS build
-      - name: Upload macOS build
-        if: matrix.os == 'macos-13'
-        uses: actions/upload-artifact@v4.6.2
-        with:
-          name: Obsidian-Client-setup-mac
-          path: |
-            dist/Obsidian Client-setup-mac-*.dmg
-            dist/Obsidian Client-setup-mac-*.dmg.blockmap
-          if-no-files-found: warn
-          compression-level: 6
-          overwrite: false
-          include-hidden-files: false
