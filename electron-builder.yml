@@ -1,0 +1,21 @@
+appId: com.imnotkoolkid.obsidianclient
+productName: Obsidian Client
+directories:
+  output: dist
+npmRebuild: false
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  icon: assets/Obsidian Client.ico
+  artifactName: "${name}-setup-win-${arch}-${version}.${ext}"
+mac:
+  target: dmg
+  icon: assets/Obsidian Client.icns
+  artifactName: "${name}-setup-mac-${version}.${ext}"
+publish:
+  - provider: github
+    owner: YOUR_GITHUB_USERNAME
+    repo: YOUR_REPOSITORY_NAME
+    releaseType: draft
