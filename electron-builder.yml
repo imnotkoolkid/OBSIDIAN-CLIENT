@@ -1,0 +1,53 @@
+appId: com.imnotkoolkid.obsidianclient
+productName: Obsidian Client
+directories:
+  output: "dist"
+npmRebuild: false
+
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+        - ia32
+  icon: "assets/Obsidian Client.ico"
+  artifactName: "${name}-setup-win-${arch}-${version}.${ext}"
+  publisherName: "imnotkoolkid"
+  requestedExecutionLevel: "asInvoker"
+
+mac:
+  target: 
+    - target: dmg
+      arch:
+        - x64
+        - arm64
+  icon: "assets/Obsidian Client.icns"
+  artifactName: "${name}-setup-mac-${arch}-${version}.${ext}"
+  category: "public.app-category.games"
+  hardenedRuntime: true
+  gatekeeperAssess: false
+  entitlements: "build/entitlements.mac.plist"
+  entitlementsInherit: "build/entitlements.mac.plist"
+
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: "Obsidian Client"
+
+dmg:
+  title: "${productName} ${version}"
+  contents:
+    - x: 130
+      y: 220
+    - x: 410
+      y: 220
+      type: link
+      path: /Applications
+
+publish:
+  - provider: github
+    owner: imnotkoolkid
+    repo: obsidian-client
+    releaseType: draft
