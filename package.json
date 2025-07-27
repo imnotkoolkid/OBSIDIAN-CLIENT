@@ -19,12 +19,26 @@
   "build": {
     "appId": "com.imnotkoolkid.obsidianclient",
     "productName": "Obsidian Client",
-    "win": {
-      "target": "nsis",
-      "icon": "assets/Obsidian Client.ico"
-    },
     "directories": {
       "output": "dist"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ],
+      "icon": "assets/Obsidian Client.ico",
+      "artifactName": "${productName}-setup-win-${arch}-${version}.${ext}"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/Obsidian Client.icns",
+      "artifactName": "${productName}-setup-mac-${version}.${ext}"
     }
   }
 }
