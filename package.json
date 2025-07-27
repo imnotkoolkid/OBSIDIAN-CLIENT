@@ -23,20 +23,8 @@
       "target": "nsis",
       "icon": "assets/Obsidian Client.ico"
     },
-    "mac": {
-      "target": "dmg",
-      "icon": "assets/Obsidian Client.icns"
-    },
     "directories": {
       "output": "dist"
-    },
-    "publish": [
-      {
-        "provider": "github",
-        "owner": "imnotkoolkid",
-        "repo": "obsidian-client",
-        "releaseType": "draft"
-      }
-    ]
+    }
   }
 }
