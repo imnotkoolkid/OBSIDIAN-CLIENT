@@ -9,9 +9,7 @@
   },
   "author": "imnotkoolkid",
   "license": "MIT",
-  "dependencies": {
-    "discord-rpc": "^4.0.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "electron": "^10.4.7",
     "electron-builder": "^24.13.3"
@@ -26,10 +24,7 @@
       "target": [
         {
           "target": "nsis",
-          "arch": [
-            "x64",
-            "ia32"
-          ]
+          "arch": ["x64", "ia32"]
         }
       ],
       "icon": "assets/Obsidian Client.ico",
