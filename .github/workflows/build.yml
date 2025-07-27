@@ -1,7 +1,7 @@
-name: Build Obsidian Client
+name: Build
 
 on:
-  workflow_dispatch: # Allows manual triggering of the workflow
+  workflow_dispatch:
 
 jobs:
   build:
@@ -34,13 +34,8 @@ jobs:
       - name: Get version and name from package.json
         id: get_version_name
         run: |
-          echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
-          echo "name=$(node -p "require('./package.json').name")" >> $GITHUB_OUTPUT
-
-      - name: Build Electron App
-        run: npm run build
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          echo "::set-output name=version::$(node -p "require('./package.json').version")"
+          echo "::set-output name=name::$(node -p "require('./package.json').name")"
 
       - name: Create Release
         id: create_release
@@ -49,10 +44,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: v${{ steps.get_version_name.outputs.version }}
-          name: Release ${{ steps.get_version_name.outputs.version }}
+          name: Release ${{ steps.get_version-name.outputs.version }}
           draft: true
-          prerelease: true
-          files: |
-            dist/*.exe
-            dist/*.dmg
+          prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Electron App
+        run: npm run build
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
