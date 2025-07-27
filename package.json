@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "electron": "^10.4.7",
-    "electron-builder": "^24.13.3"
+    "electron-builder":  "^23.0.2"
   },
   "build": {
     "appId": "com.imnotkoolkid.obsidianclient",
