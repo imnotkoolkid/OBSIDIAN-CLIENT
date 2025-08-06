@@ -1,4 +1,4 @@
-# Obsidian Client
+# [Obsidian Client](https://obsidianclient.pages.dev/)
 
 **Obsidian Client** is an Electron-based client for [Kirka.io](https://kirka.io), built with a focus on user-friendliness and easy experience with [KCH](https://kirkacommunityhub.netlify.app/) integration.
 
