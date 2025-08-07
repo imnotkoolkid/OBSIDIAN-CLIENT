@@ -61,7 +61,7 @@ If you're looking to ask questions, contribute, or just show off your fork, feel
 - Track playtime with a 7-day bar chart.
 - View stats: Total Playtime, Daily Average, Games Played, and Active Days.
 - Access KCH assets: Textures, Crosshairs, and Swapper folder.
-- Uncapped FPS toggle.
+- Uncapped FPS.
 - Built-in Resource Swapper.
 - Discord Rich Presence integration.
 
