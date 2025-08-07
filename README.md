@@ -62,8 +62,8 @@ If you're looking to ask questions, contribute, or just show off your fork, feel
 - View stats: Total Playtime, Daily Average, Games Played, and Active Days.
 - Access KCH assets: Textures, Crosshairs, and Swapper folder.
 - Uncapped FPS.
-- Built-in Resource Swapper.
-- Discord Rich Presence integration.
+- Resource Swapper.
+- Discord Rich Presence.
 
 ---
 
