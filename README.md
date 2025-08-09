@@ -1,4 +1,14 @@
-# [Obsidian Client](https://obsidianclient.pages.dev/)
+# Obsidian Client
+
+<p align="center">
+  <a href="https://discord.gg/KmRzbNPWfQ">
+    <img src="https://img.shields.io/badge/Join-Discord-5661F5?style=for-the-badge&logo=discord&logoColor=white" />
+  </a>
+
+  <a href="https://obsidianclient.pages.dev/">
+    <img src="https://img.shields.io/badge/Visit-Website-black?style=for-the-badge&logo=Google-Chrome&logoColor=white" />
+  </a>
+</p>
 
 **Obsidian Client** is an Electron-based client for [Kirka.io](https://kirka.io), built with a focus on user-friendliness and easy experience with [KCH](https://kirkacommunityhub.netlify.app/) integration.
 
