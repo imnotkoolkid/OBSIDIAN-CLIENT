@@ -86,3 +86,9 @@ Since the project was dropped midway, there are some known problems you should b
 -  **No further development**: These issues won’t be patched by the original devs unless the project is revived.
 
 If you're planning to fork or use this client, feel free to improve on these — PRs are always welcome if this ever gets active again.
+
+---
+## Still wanna download obsidian client?
+
+check out the [preview build](https://github.com/imnotkoolkid/OBSIDIAN-CLIENT-preview?tab=readme-ov-file#obsidian-client--preview-build)
+> preview build doesn't have the player freezing Bug and is stable to use.
