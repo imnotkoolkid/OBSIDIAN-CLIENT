@@ -42,7 +42,7 @@
 
 ##  Credits
 
-Made with ❤️ by  
+Made with <3 by  
 - [imnotkoolkid](https://github.com/imnotkoolkid)  
 - [akuma](https://github.com/KirkaMiddleMenScripts)  
 - [zenos](https://github.com/Dev-Zenos)
