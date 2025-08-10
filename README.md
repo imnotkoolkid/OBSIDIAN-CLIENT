@@ -10,7 +10,7 @@
   </a>
 </p>
 
-**Obsidian Client** is an Electron-based client for [Kirka.io](https://kirka.io), built with a focus on user-friendliness and easy experience with [KCH](https://kirkacommunityhub.netlify.app/) integration.
+**Obsidian Client** is an Electron-based client for [Kirka.io](https://kirka.io), built with a focus on user-friendliness and easy experience with [KCH](https://kirkacommunityhub.netlify.app/) integration. (This client is **not a fork** of juice or any other client)
 
 > ⚠️ **Project Status**:  
 > This project has been paused for a while by the original creator(s). That said, it's open-source, and you're free to fork, explore, and build upon it — just make sure you follow some things listed below.
