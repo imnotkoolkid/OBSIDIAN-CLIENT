@@ -43,9 +43,9 @@
 ##  Credits
 
 Made with <3 by  
-- [imnotkoolkid](https://github.com/imnotkoolkid)  
-- [akuma](https://github.com/KirkaMiddleMenScripts)  
-- [zenos](https://github.com/Dev-Zenos)
+- [Imnotkoolkid](https://github.com/imnotkoolkid)  
+- [Akuma](https://github.com/OBS-Akuma)  
+- [Zenos](https://github.com/Dev-Zenos)
 
 ---
 

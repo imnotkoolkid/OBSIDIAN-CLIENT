@@ -10,15 +10,15 @@ const stateMap = {
   [`${base_url}`]: "In the lobby",
   [`${base_url}hub/leaderboard`]: "Viewing player leaderboard",
   [`${base_url}hub/clans/champions-league`]: "Viewing clan leaderboard",
-  [`${base_url}hub/ranked/leaderboard-point3v3`]: "Viewing ranked leaderboard of Point 3v3",
-  [`${base_url}hub/ranked/leaderboard-sad`]: "Viewing ranked leaderboard of Search And Destroy",
-  [`${base_url}hub/ranked/leaderboard-1v1`]: "Viewing ranked leaderboard of 1v1",
+  [`${base_url}hub/ranked/leaderboard-point2v2`]: "Viewing ranked leaderboard of 2v2",
   [`${base_url}hub/clans/my-clan`]: "Viewing their clan",
   [`${base_url}hub/market`]: "Viewing market",
   [`${base_url}hub/live`]: "Viewing videos",
   [`${base_url}hub/news`]: "Viewing news",
   [`${base_url}hub/terms`]: "Viewing terms of service",
   [`${base_url}store`]: "Viewing store",
+  [`${base_url}levels`]: "Viewing levels",
+  [`${base_url}levels`]: "Viewing levels",
   [`${base_url}servers/main`]: "Viewing servers",
   [`${base_url}servers/parkour`]: "Viewing parkour servers",
   [`${base_url}servers/custom`]: "Viewing custom servers",
@@ -79,7 +79,7 @@ const updateDiscordPresence = (url) => {
   }
 
   rpcClient.setActivity({
-    details: 'Playing Obsidian Client',
+    details: 'Obsidian Client',
     state: state,
     startTimestamp: Math.floor(Date.now() / 1000),
     largeImageKey: 'Obsidian Client',
@@ -90,6 +90,10 @@ const updateDiscordPresence = (url) => {
       {
         label: 'Discord',
         url: 'https://discord.gg/qYuyhmEDa9'
+      },
+      {
+        label: 'Download',
+        url: 'https://obsidianclient.pages.dev/'
       }
     ]
   }).catch(err => console.error('Error setting Discord activity:', err));
